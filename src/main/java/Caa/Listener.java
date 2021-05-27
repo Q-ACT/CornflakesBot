@@ -104,10 +104,7 @@ public class Listener extends ListenerAdapter {
 							event.getMessage().delete().queueAfter(5000,TimeUnit.MILLISECONDS);
 							errorMessage(event.getChannel(),"Format Error: Transaction Must Be Structured as Follows:\n\n +/-[AMOUNT] [ACCOUNT] \n\n e.g.:\n\n +$10 @Person");
 						}
-					}  else if(arg[0].equalsIgnoreCase("ID")) {
-						System.out.println("ID:" + event.getAuthor().getIdLong());
-					}
-					if (arg[0].equalsIgnoreCase(prefix + "newaccount")) {
+					}  else if (arg[0].equalsIgnoreCase(prefix + "newaccount")) {
 						if(arg.length < 2) {
 							errorMessage(event.getChannel(),"Please Enter a Valid Name for the New Account");
 						}else if(Main.accounts.containsKey(arg[1].replace("!",""))){
