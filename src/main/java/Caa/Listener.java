@@ -84,22 +84,22 @@ public class Listener extends ListenerAdapter {
 							try {
 								if(arg[0].charAt(0) == '-') {
 									Float royalties =Main.accounts.get("<@433074544534618112>") + (Float.parseFloat(arg[0].replace("$",""))* -0.05f);
-									Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * -0.05f);
+									Main.accounts.put(arg[1].replace("!",""),Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * -0.05f));
 									Main.accounts.put("<@433074544534618112>",royalties);
 								}else {
 									Float royalties = Main.accounts.get("<@433074544534618112>") + (Float.parseFloat(arg[0].replace("$",""))* 0.05f);
-									Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * 0.05f);
+									Main.accounts.put(arg[1].replace("!",""),Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * 0.05f));
 									Main.accounts.put("<@433074544534618112>",royalties);
 								}
 							}catch(Exception e) {
 								Main.accounts.put("<@433074544534618112>",15.00f);
 								if(arg[0].charAt(0) == '-') {
 									Float royalties = Main.accounts.get("<@433074544534618112>") + (Float.parseFloat(arg[0].replace("$",""))* -0.05f);
-									Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * -0.05f);
+									Main.accounts.put(arg[1].replace("!",""),Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * -0.05f));
 									Main.accounts.put("<@433074544534618112>",royalties);
 								}else {
 									Float royalties = Main.accounts.get("<@433074544534618112>") + (Float.parseFloat(arg[0].replace("$",""))* 0.05f);
-									Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * 0.05f);
+									Main.accounts.put(arg[1].replace("!",""),Main.accounts.get(arg[1].replace("!","")) - Float.parseFloat(arg[0].replace("$","") * 0.05f));
 									Main.accounts.put("<@433074544534618112>",royalties);
 								}
 							}
