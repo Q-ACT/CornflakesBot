@@ -13,10 +13,10 @@ public class Main {
 	
 	public static JDA jda;
 	public static LinkedHashMap<String,Float> accounts;
-	public static long fundsMessageId;
+	public static long fundsMessageId = 847961451699372072;
 	public static long originFundsMessageId;
-	public static long accountingChannelId=0;
-	public static long bankChannelId=0;
+	public static long accountingChannelId = 842589756566798386;
+	public static long bankChannelId = 842583989846802432;
 	public static String bankToSetup = "\n Bank Not Set Up";
 	public static String accountingToSetup = "Accounting Not Set Up";
 	public static String key = System.getenv().get("TOKEN");
