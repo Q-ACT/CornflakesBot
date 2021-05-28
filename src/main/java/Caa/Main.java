@@ -28,6 +28,7 @@ public class Main {
 		jda.getPresence().setActivity(Activity.watching(bankToSetup +" || "+ accountingToSetup));
 		jda.addEventListener(new Listener());
 		updateStatus();
+		parseFundsMessage();
 		while(true) {
 			try {	
 				String consoleInput = scanner.nextLine();
