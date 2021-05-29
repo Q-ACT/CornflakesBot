@@ -204,7 +204,8 @@ public class Listener extends ListenerAdapter {
 		for (String key : Main.accounts.keySet()) {
 			fundsMessage = fundsMessage+key+"   "+"$"+ String.valueOf(Main.accounts.get(key))+"\n";
 		}
-		Main.jda.getTextChannelById(Main.bankChannelId).editMessageById(Main.fundsMessageId,"~ TOTAL COMPANY FUNDS: $" +getTotalFunds()+" ~" +"\n\n" + fundsMessage).queue();
+		Main.jda.getTextChannelById(Main.bankChannelId).editMessageById(Main.totalMessageId,"~ TOTAL COMPANY FUNDS: $" +getTotalFunds()+" ~").queue();
+		Main.jda.getTextChannelById(Main.bankChannelId).editMessageById(Main.fundsMessageId,fundsMessage).queue();
 	}
 	
 	private float getTotalFunds() {
