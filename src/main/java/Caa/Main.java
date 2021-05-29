@@ -13,10 +13,11 @@ public class Main {
 	
 	public static JDA jda;
 	public static LinkedHashMap<String,Float> accounts;
-	public static long fundsMessageId = 847961451699372072L;
-	public static long originFundsMessageId;
+	public static long originFundsMessageId = 0;
+	public static long fundsMessageId = 847988821181333505L;
 	public static long accountingChannelId = 842589756566798386L;
 	public static long bankChannelId = 842583989846802432L;
+	public static long totalMessageId = 847988820570144788L;
 	public static String bankToSetup = "\n Bank Not Set Up";
 	public static String accountingToSetup = "Accounting Not Set Up";
 	public static String key = System.getenv().get("TOKEN");
@@ -28,7 +29,6 @@ public class Main {
 		jda.getPresence().setActivity(Activity.watching(bankToSetup +" || "+ accountingToSetup));
 		jda.addEventListener(new Listener());
 		updateStatus();
-		parseFundsMessage();
 		while(true) {
 			try {	
 				String consoleInput = scanner.nextLine();
