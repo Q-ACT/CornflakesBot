@@ -20,6 +20,21 @@ public class Listener extends ListenerAdapter {
 	}
 	
 	@Override
+	public void onReady(ReadyEvent event) {
+		try {
+			System.out.println(Main.bankChannelId);
+			System.out.println(Main.fundsMessageId);
+			String[] accountsSplit = Main.jda.getTextChannelById(Main.bankChannelId).retrieveMessageById(Main.fundsMessageId).complete().getContentRaw().split("\n");
+			for(int i = 0; i < accountsSplit.length; i++ ) {
+				String[] temp = accountsSplit[i].split("\\s+");
+				Main.accounts.put(temp[0].replace("!",""), Float.parseFloat(temp[1].replace("$","").replace(",","")));
+			}
+			}catch(Exception e) {
+				e.printStackTrace();
+		}
+	}
+	
+	@Override
 	public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 		String[] arg = event.getMessage().getContentRaw().split("\\s+");
 		if(!event.getAuthor().isBot() && !event.getAuthor().isSystem()) {
@@ -44,9 +59,14 @@ public class Listener extends ListenerAdapter {
 						Main.originFundsMessageId = event.getChannel().getHistory().retrievePast(2).complete().get(1).getIdLong();
 						fundsMessage = event.getChannel().retrieveMessageById(Main.originFundsMessageId).complete().getContentRaw();
 						event.getChannel().sendMessage("Please Wait...").queue(message -> {
-							Main.fundsMessageId = message.getIdLong();
-							System.out.println("funds message id: " + Main.fundsMessageId);
-							updateFundsMessage();
+							Main.totalMessageId = message.getIdLong();
+							System.out.println("total message id: " + Main.totalMessageId);
+							event.getChannel().sendMessage("Please Wait...").queue(message2 -> {
+								Main.fundsMessageId = message2.getIdLong();
+								System.out.println("funds message id: " + Main.fundsMessageId);
+								updateFundsMessage();
+								parseFundsMessage();
+							});
 						});
 						event.getMessage().delete().queue();
 						event.getChannel().deleteMessageById(Main.originFundsMessageId).queue();
